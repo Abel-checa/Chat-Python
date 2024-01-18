@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socketio and Python Flask</title>
+</head>
+<body>
+    <h1 style="color: #FF00FF;">Python flask & Socket Io</h1>
+
+    <ul id="messages"></ul>
+    <input type="text" id="myMessage" placeholder="Introduce tu mensage ..." style="padding: .4rem;">
+    <button type="button" id="send" style="padding: .4rem;">Send</button>
+    
+    <!-- SocketIO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        const socket = io();
+        //socket.emit('message','hello!!')
+        socket.on('message',function(msg){
+            $('#messages').append('<li>' + msg + '</li>' )
+        });
+
+        $('#send').on('click',function(){
+            socket.send($('#myMessage').val());
+            console.log($('#myMessage').val())
+            $('#myMessage').val('');
+        });
+
+    </script>
+</body>
+</html>
