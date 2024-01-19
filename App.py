@@ -1,11 +1,15 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
 import requests
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 ##Aqui se crea la aplicacion
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'secret'
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 socketio = SocketIO(app) #Delegando en socket io todas las conexiones
 
