@@ -1,6 +1,5 @@
 from flask import Flask, render_template
 from flask_socketio import SocketIO, send
-import requests
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -23,7 +22,6 @@ def handleMessage(msg):
     print("Message: ",msg)
     send(msg,broadcast = True)
     
-    clientIP = requests.connection.remoteAdress
 if __name__ == "__main__":
     socketio.run(app, port=5000, debug=True) ## El debug hace que el servidor refresque los cambios para que se mantenga actualizado
 
